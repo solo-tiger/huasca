@@ -32,7 +32,7 @@ class Detection:
 
     @property
     def portraits(self):
-        return [self.base_image.crop(box) for box in self.boxes]
+        return [self.base_image.crop(self.pad_box(box,self._margin_ratio)) for box in self.boxes]
 
     @property
     def annotated(self):
@@ -47,12 +47,16 @@ class Detection:
             base_image = _Image.fromarray(base_image)
         self._base_image = base_image
 
-    def _pad_box(self,box):
-        """Pad a box size for context."""
-        ratio = 0.2
+        self._margin_ratio = 0.1
 
-        w = int(ratio*(box[2]-box[0]))
-        h = int(ratio*(box[3]-box[1]))
+    def set_padding(self,portrait_margin_ratio):
+        """ How much margin to put around detection boxes """
+        self._margin_ratio = portrait_margin_ratio
+
+    def pad_box(self,box,margin_ratio = 0.1):
+        """Pad a box size for context."""
+        w = int(margin_ratio*(box[2]-box[0]))
+        h = int(margin_ratio*(box[3]-box[1]))
 
         return (max(box[0]-w,0)
                ,max(box[1]-h,0)

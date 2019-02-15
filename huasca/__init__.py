@@ -3,6 +3,7 @@ import os as _os
 from . import classify
 from . import detect
 from . import object_tracking
+from .representation import Detection
 
 del(cellar)
 del(root)

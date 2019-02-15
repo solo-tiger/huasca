@@ -14,6 +14,8 @@
     +;::+..+;:.._++.____.+'
     `+.._..`+...+'
 
+Huasca enables prototyping by prioritizing generalization and rapid development over accuracy.
+
 ##### Step into the cellar and select a bottle of computer visions.
 
   * Face detection & localization

@@ -9,6 +9,7 @@
 import sys
 from os import listdir, path, getcwd, chdir
 from importlib import import_module
+import traceback
 
 TEST_DIRECTORY = path.dirname(__file__)
 WORKING_DIR = getcwd()
@@ -25,8 +26,8 @@ sys.path.append(path.abspath(WORKING_DIR))
 for module in modules:
     try:
         import_module(module)
-        print("tesd PASS - module {}".format(module))
+        print("tesd PASS - module '{}'".format(module))
     except Exception as e:
-        print(e)
-        print("tesd FAIL - module {}".format(module))
+        print("tesd FAIL - module '{}':".format(module))
+        print("  {}".format(traceback.format_exc()))
 
